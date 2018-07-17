@@ -1,0 +1,44 @@
+* {
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+.row {
+  max-width: 1000px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.row::before,
+.row::after {
+	display: table;
+	content: '';
+}
+
+.row::after {
+	clear: both;
+}
+
+.col-6, .col-12 {
+	float: left;
+	padding-left: 1.0416666%;
+	padding-right: 1.0416666%;
+	width: 100%;
+	text-align: center;
+}
+
+@media only screen and (min-width: 640px) {
+	.col-6 {
+		width: 50%;
+	}
+}
+
+button {
+	width: 100%;
+	padding: 10px;
+	text-transform: uppercase;
+	font-size: 16px;
+}
+
