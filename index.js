@@ -21,3 +21,13 @@ function searchApiByName(searchTerm, callback) {
 //AJAX function to search API by ingredient
 
 //AJAX function to get random recipe from API
+
+//watch for click on 'search by name' button
+function watchSearchByName() {
+	$('.js-name-button').on('click', event => {
+		console.log('watchSearchByName ran');
+		$('.js-names').prop('hidden', false);
+	})
+}
+
+watchSearchByName();

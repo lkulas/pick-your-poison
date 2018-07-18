@@ -21,7 +21,7 @@
 	clear: both;
 }
 
-.col-6, .col-12 {
+.col-6, .col-4, .col-12 {
 	float: left;
 	padding-left: 1.0416666%;
 	padding-right: 1.0416666%;
@@ -32,6 +32,9 @@
 @media only screen and (min-width: 640px) {
 	.col-6 {
 		width: 50%;
+	}
+	.col-4 {
+		width: 33.3333%;
 	}
 }
 
