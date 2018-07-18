@@ -27,17 +27,7 @@ function watchClickName() {
 	$('.js-name-button').on('click', event => {
 		console.log('watchClickName ran');
 		$('.js-names').prop('hidden', false);
-		$('.js-search-selection').prop('hidden', true);
-	})
-}
-
-function watchGoBack() {
-	$('.return-button').on('click', event => {
-		console.log('watchGoBack ran');
-		$('.js-names').prop('hidden', true);
-		$('.js-search-selection').prop('hidden', false);
 	})
 }
 
 watchClickName();
-watchGoBack();
