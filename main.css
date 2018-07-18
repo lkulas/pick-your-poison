@@ -50,9 +50,13 @@ button {
 .js-ingredient-button,
 .js-wildcard-button {
 	width: 100%;
-	font-size: 16px;
+	//font-size: 16px;
 }
 
 label {
 	display: none;
+}
+
+.js-name-query {
+	padding: 10px;
 }
