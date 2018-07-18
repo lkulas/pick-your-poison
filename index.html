@@ -17,37 +17,42 @@
 		</div>
 	</header>
 	<main role="main">
-		<div class="row">
-			<div class="col-12">
-				<h2>Search cocktail recipes by...</h2>
+		<div class="js-search-selection">
+			<div class="row">
+				<div class="col-12">
+					<h2>Search cocktail recipes by...</h2>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-6">
-				<button type="button" class="js-name-button">Name</button>
+			<div class="row">
+				<div class="col-6">
+					<button type="button" class="js-name-button">Name</button>
+				</div>
+				<div class="col-6">
+					<button type="button" class="js-category-button">Category</button>
+				</div>
 			</div>
-			<div class="col-6">
-				<button type="button" class="js-category-button">Category</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-6">
-				<button type="button" class="js-ingredient-button">Ingredient</button>
-			</div>
-			<div class="col-6">
-				<button type="button" class="js-wildcard-button">Wildcard</button>
+			<div class="row">
+				<div class="col-6">
+					<button type="button" class="js-ingredient-button">Ingredient</button>
+				</div>
+				<div class="col-6">
+					<button type="button" class="js-wildcard-button">Wildcard</button>
+				</div>
 			</div>
 		</div>
 		<div class="js-names" hidden>
 			<div class="row">
-				<div class="col-4">
-					<h2>Names go here</h2>
+				<div class="col-12">
+					<form class="js-name-search">
+						<label for="js-name-search">Search cocktails by name</label>
+						<input type="text" class="js-name-query" id="js-name-search" placeholder="margarita">
+						<button type="submit">Search</button>
+					</form>
 				</div>
-				<div class="col-4">
-					<h2>Names go here</h2>
-				</div>
-				<div class="col-4">
-					<h2>Names go here</h2>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<button type="button" class="return-button">Go Back</button>
 				</div>
 			</div>
 		</div>
