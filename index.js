@@ -1,8 +1,8 @@
-const NAME_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?';
+const NAME_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
 
 const CATEGORY_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 
-const INGREDIENT_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?';
+const INGREDIENT_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
 
 const WILDCARD_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
@@ -10,23 +10,11 @@ const WILDCARD_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
 function searchApiByName(searchTerm, callback) {
 	console.log('searchApiByName ran');
-	const settings = {
-    url: NAME_SEARCH_URL,
-    data: {
-      s: `${searchTerm} in:name`,
-    },
-    dataType: 'json',
-    type: 'GET',
-    success: callback,
-  };
-
-  $.ajax(settings);
+	const query = {
+		s: `${searchTerm}`,
+	}
+	$.getJSON(NAME_SEARCH_URL, query, callback);
 }
-	//const query = {
-		//s: searchTerm,
-	//};
-	//$.getJSON(NAME_SEARCH_URL, query, callback);
-//}
 
 //AJAX function to list API categories
 
@@ -53,13 +41,15 @@ function watchNameSearch() {
 	});
 }
 
-function displayNameSearchResults(drinks) {
+function displayNameSearchResults(data) {
 	console.log('displayNameSearchResults ran');
-	//const results = drinks.items.map(function(item, index) {
-		//return generateNameResults(item);
-	//});
-	//$('.js-name-search-results').html(results);
+	const results = data.drinks.map((item, index) => generateNameResults(item));
+	$('.js-name-search-results').html(results);
 	$('.js-name-search-results').prop('hidden', false);
+}
+
+function generateNameResults(result) {
+	return `<h2>${result.strDrink}</h2>`;
 }
 
 watchClickName();
