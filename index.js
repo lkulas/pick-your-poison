@@ -34,7 +34,7 @@ function watchNameSearch() {
 		const query = $('#name-search').val();
 		console.log(query);
 		$('#name-search').val("");
-		searchApiByName(query, displayNameSearchResults);
+		searchApiByName(query, displayNameSearchResults)
 	});
 }
 
@@ -49,8 +49,35 @@ function displayNameSearchResults(data) {
 
 //generate HTML for name search results
 function generateNameResults(result) {
-	return `<h2>${result.strDrink}</h2>`;
+	console.log('generateNameResults ran');
+	return `
+		<div class="col-6">
+			<div class="name-photo">
+				<h2 id="${result.idDrink}">${result.strDrink}</h2>
+				<img src="${result.strDrinkThumb}" id="${result.idDrink}" class="thumbnail">
+			</div>
+		</div>`;
+}
+
+//listen for click on recipe name
+function watchCocktailNameClick() {
+	console.log('watchCocktailNameClick ran');
+	$('.name-search-results').on('click', '.name-photo', event => {
+		const recipeTarget = event.target.id;
+		console.log(recipeTarget);
+		const result = generateRecipe(recipeTarget);
+		$('.name-search-results').prop('hidden', true);
+		$('.recipe').html(result);
+		$('.recipe').prop('hidden', false);
+	});
+}
+
+//generate recipe HTML
+function generateRecipe(recipe) {
+	console.log('generateRecipe ran');
+	return `<p>Generate Recipe test</p>`;
 }
 
 watchClickName();
 watchNameSearch();
+watchCocktailNameClick();

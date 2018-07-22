@@ -60,3 +60,12 @@ label {
 #name-search {
 	padding: 10px;
 }
+
+.thumbnail {
+	width: 150px;
+}
+
+.name-search-results img:hover,
+h2:hover {
+	cursor: pointer;
+}
