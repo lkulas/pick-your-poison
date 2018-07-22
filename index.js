@@ -7,7 +7,6 @@ const INGREDIENT_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filte
 const WILDCARD_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
 //AJAX function to search API by name
-
 function searchApiByName(searchTerm, callback) {
 	console.log('searchApiByName ran');
 	const query = {
@@ -30,6 +29,7 @@ function watchClickName() {
 	})
 }
 
+//watch for name search submit
 function watchNameSearch() {
 	$('.js-name-search-form').submit(event => {
 		console.log('watchNameSearch ran');
@@ -41,6 +41,7 @@ function watchNameSearch() {
 	});
 }
 
+//show name search results
 function displayNameSearchResults(data) {
 	console.log('displayNameSearchResults ran');
 	const results = data.drinks.map((item, index) => generateNameResults(item));
@@ -48,6 +49,7 @@ function displayNameSearchResults(data) {
 	$('.js-name-search-results').prop('hidden', false);
 }
 
+//generate HTML for name search results
 function generateNameResults(result) {
 	return `<h2>${result.strDrink}</h2>`;
 }
