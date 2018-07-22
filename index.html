@@ -4,7 +4,7 @@
 	<title>Find a Cocktail</title>
 	<meta name="description" content="Search and discover cocktail recipes">
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width" initial-scale="1">
 	<link href="main.css" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -17,7 +17,7 @@
 		</div>
 	</header>
 	<main role="main">
-		<div class="js-search-selection">
+		<div class="search-selection">
 			<div class="row">
 				<div class="col-12">
 					<h2>Search cocktail recipes by...</h2>
@@ -25,41 +25,41 @@
 			</div>
 			<div class="row">
 				<div class="col-6">
-					<button type="button" class="js-name-button">Name</button>
+					<button type="button" class="name-button">Name</button>
 				</div>
 				<div class="col-6">
-					<button type="button" class="js-category-button">Category</button>
+					<button type="button" class="category-button">Category</button>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-6">
-					<button type="button" class="js-ingredient-button">Ingredient</button>
+					<button type="button" class="ingredient-button">Ingredient</button>
 				</div>
 				<div class="col-6">
-					<button type="button" class="js-wildcard-button">Wildcard</button>
+					<button type="button" class="wildcard-button">Wildcard</button>
 				</div>
 			</div>
 		</div>
-		<div class="js-names" hidden>
+		<div class="names" hidden>
 			<div class="row">
 				<div class="col-12">
-					<form class="js-name-search-form">
-						<label for="js-name-search">Search by name</label>
-						<input type="text" class="js-name-query" id="js-name-search" placeholder="margarita">
+					<form id="name-search-form">
+						<label for="name-search">Search by name</label>
+						<input type="text" id="name-search" placeholder="margarita">
 						<button type="submit">Search</button>
 					</form>
 				</div>
 			</div>
 			<div class="row">
-				<div class="js-name-search-results" hidden>
+				<div class="name-search-results" hidden>
 				</div>
 			</div>
 		</div>
-		<div class="js-categories" hidden>
+		<div class="categories" hidden>
 		</div>
-		<div class="js-ingredients" hidden>
+		<div class="ingredients" hidden>
 		</div>
-		<div class="js-wildcard" hidden>
+		<div class="wildcard" hidden>
 		</div>
 	</main>
 	<script src="index.js"></script>

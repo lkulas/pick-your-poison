@@ -1,9 +1,6 @@
 const NAME_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
-
 const CATEGORY_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-
 const INGREDIENT_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
-
 const WILDCARD_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
 //AJAX function to search API by name
@@ -23,20 +20,20 @@ function searchApiByName(searchTerm, callback) {
 
 //watch for click on 'search by name' button
 function watchClickName() {
-	$('.js-name-button').on('click', event => {
+	$('.name-button').on('click', event => {
 		console.log('watchClickName ran');
-		$('.js-names').prop('hidden', false);
-	})
+		$('.names').prop('hidden', false);
+	});
 }
 
 //watch for name search submit
 function watchNameSearch() {
-	$('.js-name-search-form').submit(event => {
+	$('#name-search-form').submit(event => {
 		console.log('watchNameSearch ran');
 		event.preventDefault();
-		const queryTarget = $(this).find('.js-name-query');
-		const query = queryTarget.val();
-		queryTarget.val("");
+		const query = $('#name-search').val();
+		console.log(query);
+		$('#name-search').val("");
 		searchApiByName(query, displayNameSearchResults);
 	});
 }
@@ -44,9 +41,10 @@ function watchNameSearch() {
 //show name search results
 function displayNameSearchResults(data) {
 	console.log('displayNameSearchResults ran');
+	console.log(data);
 	const results = data.drinks.map((item, index) => generateNameResults(item));
-	$('.js-name-search-results').html(results);
-	$('.js-name-search-results').prop('hidden', false);
+	$('.name-search-results').html(results);
+	$('.name-search-results').prop('hidden', false);
 }
 
 //generate HTML for name search results
