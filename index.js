@@ -2,6 +2,7 @@ const NAME_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php'
 const CATEGORY_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 const INGREDIENT_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
 const WILDCARD_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+const ID_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php';
 
 //AJAX function to search API by name
 function searchApiByName(searchTerm, callback) {
@@ -65,7 +66,7 @@ function watchCocktailNameClick() {
 	$('.name-search-results').on('click', '.name-photo', event => {
 		const recipeTarget = event.target.id;
 		console.log(recipeTarget);
-		const result = generateRecipe(recipeTarget);
+		searchApibyId(recipeTarget, generateRecipe);
 		$('.name-search-results').prop('hidden', true);
 		$('.recipe').html(result);
 		$('.recipe').prop('hidden', false);
@@ -75,7 +76,15 @@ function watchCocktailNameClick() {
 //generate recipe HTML
 function generateRecipe(recipe) {
 	console.log('generateRecipe ran');
-	return `<p>Generate Recipe test</p>`;
+
+}
+
+//search API by cocktail ID
+function searchApiById(searchTerm, callback) {
+		const query = {
+		i: `${searchTerm}`,
+	}
+	$.getJSON(ID_SEARCH_URL, query, callback);
 }
 
 watchClickName();
