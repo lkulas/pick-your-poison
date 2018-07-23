@@ -66,17 +66,24 @@ function watchCocktailNameClick() {
 	$('.name-search-results').on('click', '.name-photo', event => {
 		const recipeTarget = event.target.id;
 		console.log(recipeTarget);
-		searchApibyId(recipeTarget, generateRecipe);
-		$('.name-search-results').prop('hidden', true);
-		$('.recipe').html(result);
-		$('.recipe').prop('hidden', false);
+		searchApiById(recipeTarget, displayRecipe);
 	});
+}
+
+//display recipe on page
+function displayRecipe(data) {
+	console.log('displayRecipe ran');
+	console.log(data);
+	const results = data.drinks.map((item, index) => generateRecipe(item));
+		$('.recipe').html(results);
+		$('.recipe').prop('hidden', false);
+		$('.name-search-results').prop('hidden', true);
 }
 
 //generate recipe HTML
 function generateRecipe(recipe) {
 	console.log('generateRecipe ran');
-
+	return `<h2>${recipe.strDrink}</h2>`
 }
 
 //search API by cocktail ID
