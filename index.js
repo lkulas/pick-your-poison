@@ -83,7 +83,15 @@ function displayRecipe(data) {
 //generate recipe HTML
 function generateRecipe(recipe) {
 	console.log('generateRecipe ran');
-	return `<h2>${recipe.strDrink}</h2>`
+	console.log(recipe.strIngredient1);
+	let ingredientCount = 0;
+	return `
+	<h2>${recipe.strDrink}</h2>
+	<img src="${recipe.strDrinkThumb}" class="feature-image" alt="Photo of ${recipe.strDrink}">
+	<h3>Ingredients</h3>
+	<ul>
+		<li>${recipe.strMeasure1} ${recipe.strIngredient1}</li>
+	`;
 }
 
 //search API by cocktail ID

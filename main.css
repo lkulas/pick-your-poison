@@ -69,3 +69,7 @@ label {
 h2:hover {
 	cursor: pointer;
 }
+
+.feature-image {
+	width: 300px;
+}
