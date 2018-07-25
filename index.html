@@ -23,12 +23,14 @@
 					<h2>Search cocktail recipes by...</h2>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-6">
-					<button type="button" class="name-button">Name</button>
-				</div>
-				<div class="col-6">
-					<button type="button" class="category-button">Category</button>
+			<div class="search-select">
+				<div class="row">
+					<div class="col-6">
+						<button type="button" class="name-button">Name</button>
+					</div>
+					<div class="col-6">
+						<button type="button" class="category-button">Category</button>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -50,8 +52,10 @@
 					</form>
 				</div>
 			</div>
+		</div>
+		<div class="name-search-results-container" hidden>
 			<div class="row">
-				<div class="name-search-results" hidden>
+				<div class="name-search-results">
 				</div>
 			</div>
 		</div>
@@ -61,14 +65,22 @@
 		</div>
 		<div class="wildcard" hidden>
 		</div>
-		<div class="row">
-			<div class="col-12">
-				<div class="recipe" hidden>
-					<p>Test</p>
+		<div class="recipe-container" hidden>
+			<div class="row">
+				<div class="col-12">
+					<div class="recipe">
+					</div>
+					<div class="ingredient-display">
+						<ul id="ingredient-list">
+						</ul>
+					</div>
 				</div>
-				<div class="ingredient-display" hidden>
-					<ul id="ingredient-list">
-					</ul>
+			</div>
+		</div>
+		<div class="start-over" hidden>
+			<div class="row">
+				<div class="col-12">
+					<button type="button" class="start-over-button">Start Over</button>
 				</div>
 			</div>
 		</div>

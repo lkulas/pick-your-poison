@@ -24,6 +24,14 @@ function watchClickName() {
 	$('.name-button').on('click', event => {
 		console.log('watchClickName ran');
 		$('.names').prop('hidden', false);
+		$('.search-selection').prop('hidden', true);
+		$('.start-over').prop('hidden', false);
+	});
+}
+
+function watchStartOver() {
+	$('.start-over-button').on('click', event => {
+		window.location.reload(true);
 	});
 }
 
@@ -45,7 +53,7 @@ function displayNameSearchResults(data) {
 	console.log(data);
 	const results = data.drinks.map((item, index) => generateNameResults(item));
 	$('.name-search-results').html(results);
-	$('.name-search-results').prop('hidden', false);
+	$('.name-search-results-container').prop('hidden', false);
 }
 
 //generate HTML for name search results
@@ -67,6 +75,7 @@ function watchCocktailNameClick() {
 		const recipeTarget = event.target.id;
 		console.log(recipeTarget);
 		searchApiById(recipeTarget, displayRecipe);
+		$('.names').prop('hidden', true);
 	});
 }
 
@@ -77,10 +86,8 @@ function displayRecipe(data) {
 	const results = data.drinks.map((item, index) => generateRecipe(item));
 	data.drinks.map((item, index) => generateIngredientList(item));
 	$('.recipe').html(results);
-	//$('#ingredient-list').html(ingredientResults);
-	$('.recipe').prop('hidden', false);
-	$('.ingredient-display').prop('hidden', false);
-	$('.name-search-results').prop('hidden', true);
+	$('.recipe-container').prop('hidden', false);
+	$('.name-search-results-container').prop('hidden', true);
 }
 
 
@@ -152,3 +159,4 @@ function searchApiById(searchTerm, callback) {
 watchClickName();
 watchNameSearch();
 watchCocktailNameClick();
+watchStartOver();
