@@ -54,6 +54,7 @@ function displayNameSearchResults(data) {
 	const results = data.drinks.map((item, index) => generateNameResults(item));
 	$('.name-search-results').html(results);
 	$('.name-search-results-container').prop('hidden', false);
+	$('.names').prop('hidden', true);
 }
 
 //generate HTML for name search results
@@ -85,6 +86,7 @@ function displayRecipe(data) {
 	console.log(data);
 	const results = data.drinks.map((item, index) => generateRecipe(item));
 	data.drinks.map((item, index) => generateIngredientList(item));
+	data.drinks.map((item, index) => generateInstructions(item));
 	$('.recipe').html(results);
 	$('.recipe-container').prop('hidden', false);
 	$('.name-search-results-container').prop('hidden', true);
@@ -96,8 +98,12 @@ function generateRecipe(recipe) {
 	console.log('generateRecipe ran');
 	return `
 	<h2>${recipe.strDrink}</h2>
-	<img src="${recipe.strDrinkThumb}" class="feature-image" alt="Photo of ${recipe.strDrink}">
-	<h3>Ingredients</h3>`;
+	<img src="${recipe.strDrinkThumb}" class="feature-image" alt="Photo of ${recipe.strDrink}">`;
+}
+
+function generateInstructions(recipe) {
+	console.log('generateInstructions ran');
+	$('.instructions').append(`<p>${recipe.strInstructions}</p>`);
 }
 
 function generateIngredientList(recipe) {
