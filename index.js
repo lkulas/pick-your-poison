@@ -75,23 +75,70 @@ function displayRecipe(data) {
 	console.log('displayRecipe ran');
 	console.log(data);
 	const results = data.drinks.map((item, index) => generateRecipe(item));
-		$('.recipe').html(results);
-		$('.recipe').prop('hidden', false);
-		$('.name-search-results').prop('hidden', true);
+	data.drinks.map((item, index) => generateIngredientList(item));
+	$('.recipe').html(results);
+	//$('#ingredient-list').html(ingredientResults);
+	$('.recipe').prop('hidden', false);
+	$('.ingredient-display').prop('hidden', false);
+	$('.name-search-results').prop('hidden', true);
 }
+
 
 //generate recipe HTML
 function generateRecipe(recipe) {
 	console.log('generateRecipe ran');
-	console.log(recipe.strIngredient1);
-	let ingredientCount = 0;
 	return `
 	<h2>${recipe.strDrink}</h2>
 	<img src="${recipe.strDrinkThumb}" class="feature-image" alt="Photo of ${recipe.strDrink}">
-	<h3>Ingredients</h3>
-	<ul>
-		<li>${recipe.strMeasure1} ${recipe.strIngredient1}</li>
-	`;
+	<h3>Ingredients</h3>`;
+}
+
+function generateIngredientList(recipe) {
+	if (recipe.strIngredient1 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure1} ${recipe.strIngredient1}</li>`);
+	};
+	if (recipe.strIngredient2 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure2} ${recipe.strIngredient2}</li>`);
+	};
+	if (recipe.strIngredient3 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure3} ${recipe.strIngredient3}</li>`);
+	};
+	if (recipe.strIngredient4 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure4} ${recipe.strIngredient4}</li>`);
+	};
+	if (recipe.strIngredient5 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure5} ${recipe.strIngredient5}</li>`);
+	};
+	if (recipe.strIngredient6 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure6} ${recipe.strIngredient6}</li>`);
+	};
+	if (recipe.strIngredient7 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure7} ${recipe.strIngredient7}</li>`);
+	};
+	if (recipe.strIngredient8 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure8} ${recipe.strIngredient8}</li>`);
+	};
+	if (recipe.strIngredient9 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure9} ${recipe.strIngredient9}</li>`);
+	};
+	if (recipe.strIngredient10 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure10} ${recipe.strIngredient10}</li>`);
+	};
+	if (recipe.strIngredient11 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure11} ${recipe.strIngredient11}</li>`);
+	};
+	if (recipe.strIngredient12 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure12} ${recipe.strIngredient12}</li>`);
+	};
+	if (recipe.strIngredient13 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure13} ${recipe.strIngredient13}</li>`);
+	};
+	if (recipe.strIngredient14 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure14} ${recipe.strIngredient14}</li>`);
+	};
+	if (recipe.strIngredient15 != "") {
+		$('#ingredient-list').append(`<li>${recipe.strMeasure15} ${recipe.strIngredient15}</li>`);
+	};
 }
 
 //search API by cocktail ID

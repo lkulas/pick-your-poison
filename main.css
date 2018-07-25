@@ -73,3 +73,11 @@ h2:hover {
 .feature-image {
 	width: 300px;
 }
+
+#ingredient-list {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	width: 200px;
+}
+
