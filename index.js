@@ -29,10 +29,22 @@ function watchClickName() {
 	});
 }
 
+//watch for user click on start over button
 function watchStartOver() {
 	$('.start-over-button').on('click', event => {
 		window.location.reload(true);
 	});
+}
+
+function watchGoBack() {
+	$('.back-button').on('click', event => {
+		$('.name-search-results-container').prop('hidden', false);
+		$('.names').prop('hidden', false);
+		$('.recipe-container').prop('hidden', true);
+		$('#ingredient-list').html("");
+		$('.back-button').prop('hidden', true);
+		$('.instructions').html("");
+	})
 }
 
 //watch for name search submit
@@ -54,7 +66,6 @@ function displayNameSearchResults(data) {
 	const results = data.drinks.map((item, index) => generateNameResults(item));
 	$('.name-search-results').html(results);
 	$('.name-search-results-container').prop('hidden', false);
-	$('.names').prop('hidden', true);
 }
 
 //generate HTML for name search results
@@ -90,6 +101,7 @@ function displayRecipe(data) {
 	$('.recipe').html(results);
 	$('.recipe-container').prop('hidden', false);
 	$('.name-search-results-container').prop('hidden', true);
+	$('.back-button').prop('hidden', false);
 }
 
 
@@ -101,11 +113,13 @@ function generateRecipe(recipe) {
 	<img src="${recipe.strDrinkThumb}" class="feature-image" alt="Photo of ${recipe.strDrink}">`;
 }
 
+//display recipe instructions
 function generateInstructions(recipe) {
 	console.log('generateInstructions ran');
 	$('.instructions').append(`<p>${recipe.strInstructions}</p>`);
 }
 
+//generate and display recipe ingredient list
 function generateIngredientList(recipe) {
 	if (recipe.strIngredient1 != "") {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure1} ${recipe.strIngredient1}</li>`);
@@ -166,3 +180,4 @@ watchClickName();
 watchNameSearch();
 watchCocktailNameClick();
 watchStartOver();
+watchGoBack();
