@@ -1,5 +1,5 @@
 const NAME_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
-const CATEGORY_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+const CATEGORY_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php';
 const INGREDIENT_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
 const WILDCARD_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 const ID_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php';
@@ -29,6 +29,45 @@ function watchClickName() {
 	});
 }
 
+//watch for click on 'categories' button
+function watchClickCategories() {
+	$('.category-button').on('click', event => {
+		console.log('watchClickName ran');
+		$('.categories-container').prop('hidden', false);
+		$('.search-selection').prop('hidden', true);
+		$('.start-over').prop('hidden', false);
+		searchApiByCategory(displayCategoryResults)
+	});
+}
+
+function searchApiByCategory(callback) {
+	console.log('searchApiByCategory ran');
+	const query = {
+		c: 'list',
+	}
+	$.getJSON(CATEGORY_LIST_URL, query, callback);
+}
+
+
+
+//generate categories
+function displayCategoryResults(data) {
+	console.log('displayCategoryResults ran');
+	console.log(data);
+	data.drinks.map((item, index) => generateCategoryResults(item));
+}
+
+//generate HTML for name search results
+function generateCategoryResults(result) {
+	console.log('generateCategoryResults ran');
+	$('.categories').append(`<div class="col-6"><button type="button" class="category-list-button">${result.strCategory}</button></div>`);
+}
+
+
+
+
+
+
 //watch for user click on start over button
 function watchStartOver() {
 	$('.start-over-button').on('click', event => {
@@ -36,6 +75,7 @@ function watchStartOver() {
 	});
 }
 
+//watch for user click on go back button
 function watchGoBack() {
 	$('.back-button').on('click', event => {
 		$('.name-search-results-container').prop('hidden', false);
@@ -181,3 +221,4 @@ watchNameSearch();
 watchCocktailNameClick();
 watchStartOver();
 watchGoBack();
+watchClickCategories()
