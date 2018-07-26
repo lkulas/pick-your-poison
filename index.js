@@ -3,6 +3,7 @@ const CATEGORY_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php'
 const INGREDIENT_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
 const WILDCARD_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 const ID_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php';
+const CATEGORY_FILTER_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
 
 //AJAX function to search API by name
 function searchApiByName(searchTerm, callback) {
@@ -12,8 +13,6 @@ function searchApiByName(searchTerm, callback) {
 	}
 	$.getJSON(NAME_SEARCH_URL, query, callback);
 }
-
-//AJAX function to list API categories
 
 //AJAX function to search API by ingredient
 
@@ -40,6 +39,7 @@ function watchClickCategories() {
 	});
 }
 
+//AJAX function to list API categories
 function searchApiByCategory(callback) {
 	console.log('searchApiByCategory ran');
 	const query = {
@@ -48,25 +48,33 @@ function searchApiByCategory(callback) {
 	$.getJSON(CATEGORY_LIST_URL, query, callback);
 }
 
-
-
 //generate categories
 function displayCategoryResults(data) {
-	console.log('displayCategoryResults ran');
-	console.log(data);
 	data.drinks.map((item, index) => generateCategoryResults(item));
 }
 
 //generate HTML for name search results
 function generateCategoryResults(result) {
 	console.log('generateCategoryResults ran');
-	$('.categories').append(`<div class="col-6"><button type="button" class="category-list-button">${result.strCategory}</button></div>`);
+	$('.categories').append(`<div class="col-6"><button type="button" class="category-list-button" id="${result.strCategory}">${result.strCategory}</button></div>`);
 }
 
+//watch for user click on category result button
+function watchClickCategoryResult() {
+	console.log('watchClickCategoryResult ran');
+	$('.categories').on('click', 'button', event => {
+		const query = event.target.id;
+		filterApiByCategory(query, displayNameSearchResults);
+		$('.category-back-button').prop('hidden', false);
+	});
+}
 
-
-
-
+function filterApiByCategory(searchTerm, callback) {
+	const query = {
+		c: `${searchTerm}`,
+	};
+	$.getJSON(CATEGORY_FILTER_URL, query, callback);
+}
 
 //watch for user click on start over button
 function watchStartOver() {
@@ -84,7 +92,12 @@ function watchGoBack() {
 		$('#ingredient-list').html("");
 		$('.back-button').prop('hidden', true);
 		$('.instructions').html("");
-	})
+	});
+	$('.category-back-button').on('click', event => {
+		$('.categories-container').prop('hidden', false);
+		$('.category-back-button').prop('hidden', true);
+		$('.name-search-results-container').prop('hidden', true);
+	});
 }
 
 //watch for name search submit
@@ -101,11 +114,10 @@ function watchNameSearch() {
 
 //show name search results
 function displayNameSearchResults(data) {
-	console.log('displayNameSearchResults ran');
-	console.log(data);
 	const results = data.drinks.map((item, index) => generateNameResults(item));
 	$('.name-search-results').html(results);
 	$('.name-search-results-container').prop('hidden', false);
+	$('.categories-container').prop('hidden', true);
 }
 
 //generate HTML for name search results
@@ -123,11 +135,13 @@ function generateNameResults(result) {
 //listen for click on recipe name
 function watchCocktailNameClick() {
 	console.log('watchCocktailNameClick ran');
-	$('.name-search-results').on('click', '.name-photo', event => {
+	$('main').on('click', '.name-photo', event => {
 		const recipeTarget = event.target.id;
 		console.log(recipeTarget);
 		searchApiById(recipeTarget, displayRecipe);
 		$('.names').prop('hidden', true);
+		$('.categories-drinks').prop('hidden', true);
+		$('.category-back-button').prop('hidden', true);
 	});
 }
 
@@ -210,7 +224,7 @@ function generateIngredientList(recipe) {
 
 //search API by cocktail ID
 function searchApiById(searchTerm, callback) {
-		const query = {
+	const query = {
 		i: `${searchTerm}`,
 	}
 	$.getJSON(ID_SEARCH_URL, query, callback);
@@ -221,4 +235,5 @@ watchNameSearch();
 watchCocktailNameClick();
 watchStartOver();
 watchGoBack();
-watchClickCategories()
+watchClickCategories();
+watchClickCategoryResult();
