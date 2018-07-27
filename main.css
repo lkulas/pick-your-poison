@@ -89,6 +89,11 @@ h2:hover {
 	width: 200px;
 }
 
+ul {
+	list-style-type: none;
+}
+
 li {
   text-transform: capitalize;
+
 }

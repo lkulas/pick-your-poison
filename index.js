@@ -165,22 +165,59 @@ function watchNameSearch() {
 	});
 }
 
+let listCount = 0;
+
 //show name search results
 function displayNameSearchResults(data) {
 	const results = data.drinks.map((item, index) => generateNameResults(item));
 	$('.name-search-results').html(results);
 	$('.name-search-results-container').prop('hidden', false);
 	$('.categories-container').prop('hidden', true);
+	showNextSix(listCount);
+	console.log(data.drinks.length);
+	if (data.drinks.length > 7) {
+		$('.load-more-button').prop('hidden', false);
+	}
+	else $('.load-more-button').prop('hidden', true);
+}
+
+function showNextSix(index) {
+	console.log('showNextSix ran');
+	let elements = $(".name-search-results li");
+	elements.hide();
+	let end = index + 6;
+	if (end > elements.length) {
+		end = elements.length;
+		elements.slice(0, end).show()
+		$('.load-more-button').prop('hidden', true);
+	}
+	else if (end < elements.length) {
+		elements.slice(0, end).show();
+		index += 6;
+	}
+	else {
+		index = 0;
+		elements.slice(0, 6).show();
+	};
+}
+
+function watchLoadMore() {
+	console.log('watchLoadMore ran');
+	$('main').on('click', '.load-more-button', event => {
+		console.log(listCount);
+		listCount += 6;
+		showNextSix(listCount);
+	});
 }
 
 //generate HTML for name search results
 function generateNameResults(result) {
 	return `
 		<div class="col-6">
-			<div class="name-photo">
+			<li class="name-photo">
 				<h2>${result.strDrink}</h2>
 				<img src="${result.strDrinkThumb}" id="${result.idDrink}" class="thumbnail" alt="Photo of ${result.strDrinkThumb}">
-			</div>
+			</li>
 		</div>`;
 }
 
@@ -277,3 +314,4 @@ watchClickWildcard();
 watchClickRepeatWildcard();
 watchClickIngredient();
 watchIngredientSearch();
+watchLoadMore();
