@@ -54,7 +54,8 @@ button {
 	//font-size: 16px;
 }
 
-.category-list-button {
+.category-list-button, 
+.wildcard-repeat-button {
 	margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -63,7 +64,8 @@ label {
 	display: none;
 }
 
-#name-search {
+#name-search,
+#ingredient-search {
 	padding: 10px;
 }
 
@@ -87,3 +89,6 @@ h2:hover {
 	width: 200px;
 }
 
+li {
+  text-transform: capitalize;
+}

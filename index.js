@@ -7,21 +7,92 @@ const CATEGORY_FILTER_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.
 
 //AJAX function to search API by name
 function searchApiByName(searchTerm, callback) {
-	console.log('searchApiByName ran');
 	const query = {
 		s: `${searchTerm}`,
-	}
+	};
 	$.getJSON(NAME_SEARCH_URL, query, callback);
 }
 
 //AJAX function to search API by ingredient
+function searchApiByIngredient(searchTerm, callback) {
+	const query = {
+		i: `${searchTerm}`,
+	};
+	$.getJSON(INGREDIENT_SEARCH_URL, query, callback);
+}
 
 //AJAX function to get random recipe from API
+function searchApiByWildcard(callback) {
+	$.getJSON(WILDCARD_URL, callback);
+}
+
+//AJAX function to search API by cocktail ID
+function searchApiById(searchTerm, callback) {
+	const query = {
+		i: `${searchTerm}`,
+	};
+	$.getJSON(ID_SEARCH_URL, query, callback);
+}
+
+//AJAX function to list API categories
+function searchApiByCategory(callback) {
+	const query = {
+		c: 'list',
+	};
+	$.getJSON(CATEGORY_LIST_URL, query, callback);
+}
+
+//AJAX function to find drinks by category
+function filterApiByCategory(searchTerm, callback) {
+	const query = {
+		c: `${searchTerm}`,
+	};
+	$.getJSON(CATEGORY_FILTER_URL, query, callback);
+}
+
+//watch for click on 'search by ingredient' button
+function watchClickIngredient() {
+	$('.ingredient-button').on('click', event => {
+		$('.ingredients-container').prop('hidden', false);
+		$('.search-selection').prop('hidden', true);
+		$('.start-over').prop('hidden', false);
+	});
+}
+
+//watch for ingredient search submit
+function watchIngredientSearch() {
+	$('#ingredient-search-form').submit(event => {
+		event.preventDefault();
+		const query = $('#ingredient-search').val();
+		$('#ingredient-search').val("");
+		searchApiByIngredient(query, displayNameSearchResults)
+    $('.ingredients-container').prop('hidden', true);
+	});
+}
+
+//watch for click on 'wildcard' button
+function watchClickWildcard() {
+  $('.wildcard-button').on('click', event => {
+    $('.search-selection').prop('hidden', true);
+		$('.start-over').prop('hidden', false);
+    searchApiByWildcard(displayRecipe);
+    $('.back-button').prop('hidden', true);
+    $('.wildcard-repeat-button').prop('hidden', false);
+  });
+}
+
+//watch for click on 'get another recipe' button
+function watchClickRepeatWildcard() {
+  $('.wildcard-repeat-button').on('click', event => {
+    $('#ingredient-list').html("");
+		$('.instructions').html("");
+    searchApiByWildcard(displayRecipe);
+  });
+}
 
 //watch for click on 'search by name' button
 function watchClickName() {
 	$('.name-button').on('click', event => {
-		console.log('watchClickName ran');
 		$('.names').prop('hidden', false);
 		$('.search-selection').prop('hidden', true);
 		$('.start-over').prop('hidden', false);
@@ -31,21 +102,11 @@ function watchClickName() {
 //watch for click on 'categories' button
 function watchClickCategories() {
 	$('.category-button').on('click', event => {
-		console.log('watchClickName ran');
 		$('.categories-container').prop('hidden', false);
 		$('.search-selection').prop('hidden', true);
 		$('.start-over').prop('hidden', false);
 		searchApiByCategory(displayCategoryResults)
 	});
-}
-
-//AJAX function to list API categories
-function searchApiByCategory(callback) {
-	console.log('searchApiByCategory ran');
-	const query = {
-		c: 'list',
-	}
-	$.getJSON(CATEGORY_LIST_URL, query, callback);
 }
 
 //generate categories
@@ -55,25 +116,16 @@ function displayCategoryResults(data) {
 
 //generate HTML for name search results
 function generateCategoryResults(result) {
-	console.log('generateCategoryResults ran');
 	$('.categories').append(`<div class="col-6"><button type="button" class="category-list-button" id="${result.strCategory}">${result.strCategory}</button></div>`);
 }
 
 //watch for user click on category result button
 function watchClickCategoryResult() {
-	console.log('watchClickCategoryResult ran');
 	$('.categories').on('click', 'button', event => {
 		const query = event.target.id;
 		filterApiByCategory(query, displayNameSearchResults);
 		$('.category-back-button').prop('hidden', false);
 	});
-}
-
-function filterApiByCategory(searchTerm, callback) {
-	const query = {
-		c: `${searchTerm}`,
-	};
-	$.getJSON(CATEGORY_FILTER_URL, query, callback);
 }
 
 //watch for user click on start over button
@@ -87,7 +139,7 @@ function watchStartOver() {
 function watchGoBack() {
 	$('.back-button').on('click', event => {
 		$('.name-search-results-container').prop('hidden', false);
-		$('.names').prop('hidden', false);
+		$('.names').prop('hidden', true);
 		$('.recipe-container').prop('hidden', true);
 		$('#ingredient-list').html("");
 		$('.back-button').prop('hidden', true);
@@ -97,18 +149,19 @@ function watchGoBack() {
 		$('.categories-container').prop('hidden', false);
 		$('.category-back-button').prop('hidden', true);
 		$('.name-search-results-container').prop('hidden', true);
+    $('.instructions').html("");
+    $('#ingredient-list').html("");
 	});
 }
 
 //watch for name search submit
 function watchNameSearch() {
 	$('#name-search-form').submit(event => {
-		console.log('watchNameSearch ran');
 		event.preventDefault();
 		const query = $('#name-search').val();
-		console.log(query);
 		$('#name-search').val("");
 		searchApiByName(query, displayNameSearchResults)
+    $('.names').prop('hidden', true);
 	});
 }
 
@@ -122,46 +175,38 @@ function displayNameSearchResults(data) {
 
 //generate HTML for name search results
 function generateNameResults(result) {
-	console.log('generateNameResults ran');
 	return `
 		<div class="col-6">
 			<div class="name-photo">
-				<h2 id="${result.idDrink}">${result.strDrink}</h2>
-				<img src="${result.strDrinkThumb}" id="${result.idDrink}" class="thumbnail">
+				<h2>${result.strDrink}</h2>
+				<img src="${result.strDrinkThumb}" id="${result.idDrink}" class="thumbnail" alt="Photo of ${result.strDrinkThumb}">
 			</div>
 		</div>`;
 }
 
 //listen for click on recipe name
 function watchCocktailNameClick() {
-	console.log('watchCocktailNameClick ran');
 	$('main').on('click', '.name-photo', event => {
 		const recipeTarget = event.target.id;
-		console.log(recipeTarget);
 		searchApiById(recipeTarget, displayRecipe);
 		$('.names').prop('hidden', true);
-		$('.categories-drinks').prop('hidden', true);
 		$('.category-back-button').prop('hidden', true);
+    $('.back-button').prop('hidden', false);
 	});
 }
 
 //display recipe on page
 function displayRecipe(data) {
-	console.log('displayRecipe ran');
-	console.log(data);
 	const results = data.drinks.map((item, index) => generateRecipe(item));
 	data.drinks.map((item, index) => generateIngredientList(item));
 	data.drinks.map((item, index) => generateInstructions(item));
 	$('.recipe').html(results);
 	$('.recipe-container').prop('hidden', false);
 	$('.name-search-results-container').prop('hidden', true);
-	$('.back-button').prop('hidden', false);
 }
-
 
 //generate recipe HTML
 function generateRecipe(recipe) {
-	console.log('generateRecipe ran');
 	return `
 	<h2>${recipe.strDrink}</h2>
 	<img src="${recipe.strDrinkThumb}" class="feature-image" alt="Photo of ${recipe.strDrink}">`;
@@ -169,7 +214,6 @@ function generateRecipe(recipe) {
 
 //display recipe instructions
 function generateInstructions(recipe) {
-	console.log('generateInstructions ran');
 	$('.instructions').append(`<p>${recipe.strInstructions}</p>`);
 }
 
@@ -222,14 +266,6 @@ function generateIngredientList(recipe) {
 	};
 }
 
-//search API by cocktail ID
-function searchApiById(searchTerm, callback) {
-	const query = {
-		i: `${searchTerm}`,
-	}
-	$.getJSON(ID_SEARCH_URL, query, callback);
-}
-
 watchClickName();
 watchNameSearch();
 watchCocktailNameClick();
@@ -237,3 +273,7 @@ watchStartOver();
 watchGoBack();
 watchClickCategories();
 watchClickCategoryResult();
+watchClickWildcard();
+watchClickRepeatWildcard();
+watchClickIngredient();
+watchIngredientSearch();
