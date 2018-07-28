@@ -15,10 +15,13 @@ function searchApiByName(searchTerm, callback) {
 
 //AJAX function to search API by ingredient
 function searchApiByIngredient(searchTerm, callback) {
+	console.log('searchApiByIngredient ran');
 	const query = {
 		i: `${searchTerm}`,
 	};
-	$.getJSON(INGREDIENT_SEARCH_URL, query, callback);
+	$.getJSON(INGREDIENT_SEARCH_URL, query, callback).fail(function () {
+		searchError();
+	});
 }
 
 //AJAX function to get random recipe from API
@@ -62,6 +65,7 @@ function watchClickIngredient() {
 //watch for ingredient search submit
 function watchIngredientSearch() {
 	$('#ingredient-search-form').submit(event => {
+		console.log('ingredient searched');
 		event.preventDefault();
 		const query = $('#ingredient-search').val();
 		$('#ingredient-search').val("");
@@ -165,10 +169,18 @@ function watchNameSearch() {
 	});
 }
 
-let listCount = 0;
+function searchError() {
+	$('#name-search-results-container').html('<div class="col-12"><p>Sorry, no results!</p></div>');
+	$('#load-more-button').prop('hidden', true);
+	$('#name-search-results-container').prop('hidden', false);
+}
 
 //show name search results
 function displayNameSearchResults(data) {
+	console.log(data.drinks);
+	if (data.drinks === null) {
+		searchError();
+	} else {
 	const results = data.drinks.map((item, index) => generateNameResults(item));
 	$('#name-search-results').html(results);
 	$('#name-search-results-container').prop('hidden', false);
@@ -178,7 +190,7 @@ function displayNameSearchResults(data) {
 	if (data.drinks.length > 7) {
 		$('#load-more-button').prop('hidden', false);
 	}
-	else $('#load-more-button').prop('hidden', true);
+	else $('#load-more-button').prop('hidden', true);};
 }
 
 function showNextSix(index) {
@@ -200,6 +212,8 @@ function showNextSix(index) {
 		elements.slice(0, 6).show();
 	};
 }
+
+let listCount = 0;
 
 function watchLoadMore() {
 	console.log('watchLoadMore ran');

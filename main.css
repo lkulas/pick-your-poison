@@ -148,7 +148,8 @@ li {
   text-transform: capitalize;
 }
 
-.name-photo ul {
+.name-photo ul, 
+li {
 	list-style-type: none;
 }
 
