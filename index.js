@@ -15,7 +15,6 @@ function searchApiByName(searchTerm, callback) {
 
 //AJAX function to search API by ingredient
 function searchApiByIngredient(searchTerm, callback) {
-	console.log('searchApiByIngredient ran');
 	const query = {
 		i: `${searchTerm}`,
 	};
@@ -65,7 +64,6 @@ function watchClickIngredient() {
 //watch for ingredient search submit
 function watchIngredientSearch() {
 	$('#ingredient-search-form').submit(event => {
-		console.log('ingredient searched');
 		event.preventDefault();
 		const query = $('#ingredient-search').val();
 		$('#ingredient-search').val("");
@@ -177,7 +175,6 @@ function searchError() {
 
 //show name search results
 function displayNameSearchResults(data) {
-	console.log(data.drinks);
 	if (data.drinks === null) {
 		searchError();
 	} else {
@@ -186,7 +183,6 @@ function displayNameSearchResults(data) {
 	$('#name-search-results-container').prop('hidden', false);
 	$('#categories-container').prop('hidden', true);
 	showNextSix(listCount);
-	console.log(data.drinks.length);
 	if (data.drinks.length > 7) {
 		$('#load-more-button').prop('hidden', false);
 	}
@@ -194,7 +190,6 @@ function displayNameSearchResults(data) {
 }
 
 function showNextSix(index) {
-	console.log('showNextSix ran');
 	let elements = $("#name-search-results li");
 	elements.hide();
 	let end = index + 6;
@@ -216,9 +211,7 @@ function showNextSix(index) {
 let listCount = 0;
 
 function watchLoadMore() {
-	console.log('watchLoadMore ran');
 	$('main').on('click', '#load-more-button', event => {
-		console.log(listCount);
 		listCount += 6;
 		showNextSix(listCount);
 	});

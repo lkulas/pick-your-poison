@@ -151,15 +151,15 @@ h3:hover {
 	margin-right: auto;
 }
 
-li {
-  text-transform: capitalize;
+ul {
+	padding-left: 0px;
 }
 
-ul, li {
-	list-style-type: none;
+li {
+  text-transform: capitalize;
+  list-style-type: none;
 }
 
 #ingredient-list li {
 	margin-bottom: 10px;
-	//list-style-position: inside;
 }
