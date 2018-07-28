@@ -122,7 +122,6 @@ h3:hover {
 }
 
 .name-photo img {
-  opacity: 0.8;
   border: 2px solid white;
 }
 
@@ -131,7 +130,7 @@ h3:hover {
 }
 
 .name-photo img:hover {
-  opacity: 1;
+  border: 2px solid #db8a23;
 }
 
 .feature-image {
@@ -142,10 +141,18 @@ h3:hover {
 #ingredient-list {
 	margin-left: auto;
 	margin-right: auto;
-	text-align: left;
-	width: 200px;
+	//text-align: left;
 }
 
 li {
   text-transform: capitalize;
+}
+
+.name-photo ul {
+	list-style-type: none;
+}
+
+#ingredient-list li {
+	margin-bottom: 10px;
+	list-style-position: inside;
 }

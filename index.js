@@ -213,12 +213,12 @@ function watchLoadMore() {
 //generate HTML for name search results
 function generateNameResults(result) {
 	return `
-		<div class="col-6">
 			<li class="name-photo">
-				<h2>${result.strDrink}</h2>
-				<img src="${result.strDrinkThumb}" id="${result.idDrink}" class="thumbnail" alt="Photo of ${result.strDrinkThumb}">
-			</li>
-		</div>`;
+				<div class="col-6">
+					<img src="${result.strDrinkThumb}" id="${result.idDrink}" class="thumbnail" alt="Photo of ${result.strDrinkThumb}">
+					<h3>${result.strDrink}</h3>
+				</div>
+			</li>`;
 }
 
 //listen for click on recipe name
