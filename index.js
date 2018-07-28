@@ -52,10 +52,10 @@ function filterApiByCategory(searchTerm, callback) {
 
 //watch for click on 'search by ingredient' button
 function watchClickIngredient() {
-	$('.ingredient-button').on('click', event => {
-		$('.ingredients-container').prop('hidden', false);
-		$('.search-selection').prop('hidden', true);
-		$('.start-over').prop('hidden', false);
+	$('#ingredient-button').on('click', event => {
+		$('#ingredients-container').prop('hidden', false);
+		$('#search-selection').prop('hidden', true);
+		$('#start-over').prop('hidden', false);
 	});
 }
 
@@ -66,45 +66,45 @@ function watchIngredientSearch() {
 		const query = $('#ingredient-search').val();
 		$('#ingredient-search').val("");
 		searchApiByIngredient(query, displayNameSearchResults)
-    $('.ingredients-container').prop('hidden', true);
+    $('#ingredients-container').prop('hidden', true);
 	});
 }
 
 //watch for click on 'wildcard' button
 function watchClickWildcard() {
-  $('.wildcard-button').on('click', event => {
-    $('.search-selection').prop('hidden', true);
-		$('.start-over').prop('hidden', false);
+  $('#wildcard-button').on('click', event => {
+    $('#search-selection').prop('hidden', true);
+		$('#start-over').prop('hidden', false);
     searchApiByWildcard(displayRecipe);
-    $('.back-button').prop('hidden', true);
-    $('.wildcard-repeat-button').prop('hidden', false);
+    $('#back-button').prop('hidden', true);
+    $('#wildcard-repeat-button').prop('hidden', false);
   });
 }
 
 //watch for click on 'get another recipe' button
 function watchClickRepeatWildcard() {
-  $('.wildcard-repeat-button').on('click', event => {
+  $('#wildcard-repeat-button').on('click', event => {
     $('#ingredient-list').html("");
-		$('.instructions').html("");
+		$('#instructions').html("");
     searchApiByWildcard(displayRecipe);
   });
 }
 
 //watch for click on 'search by name' button
 function watchClickName() {
-	$('.name-button').on('click', event => {
-		$('.names').prop('hidden', false);
-		$('.search-selection').prop('hidden', true);
-		$('.start-over').prop('hidden', false);
+	$('#name-button').on('click', event => {
+		$('#names').prop('hidden', false);
+		$('#search-selection').prop('hidden', true);
+		$('#start-over').prop('hidden', false);
 	});
 }
 
 //watch for click on 'categories' button
 function watchClickCategories() {
-	$('.category-button').on('click', event => {
-		$('.categories-container').prop('hidden', false);
-		$('.search-selection').prop('hidden', true);
-		$('.start-over').prop('hidden', false);
+	$('#category-button').on('click', event => {
+		$('#categories-container').prop('hidden', false);
+		$('#search-selection').prop('hidden', true);
+		$('#start-over').prop('hidden', false);
 		searchApiByCategory(displayCategoryResults)
 	});
 }
@@ -116,40 +116,40 @@ function displayCategoryResults(data) {
 
 //generate HTML for name search results
 function generateCategoryResults(result) {
-	$('.categories').append(`<div class="col-6"><button type="button" class="category-list-button" id="${result.strCategory}">${result.strCategory}</button></div>`);
+	$('#categories').append(`<div class="col-6"><button type="button" class="category-list-button" id="${result.strCategory}">${result.strCategory}</button></div>`);
 }
 
 //watch for user click on category result button
 function watchClickCategoryResult() {
-	$('.categories').on('click', 'button', event => {
+	$('#categories').on('click', 'button', event => {
 		const query = event.target.id;
 		filterApiByCategory(query, displayNameSearchResults);
-		$('.category-back-button').prop('hidden', false);
+		$('#category-back-button').prop('hidden', false);
 	});
 }
 
 //watch for user click on start over button
 function watchStartOver() {
-	$('.start-over-button').on('click', event => {
+	$('#start-over-button').on('click', event => {
 		window.location.reload(true);
 	});
 }
 
 //watch for user click on go back button
 function watchGoBack() {
-	$('.back-button').on('click', event => {
-		$('.name-search-results-container').prop('hidden', false);
-		$('.names').prop('hidden', true);
-		$('.recipe-container').prop('hidden', true);
+	$('#back-button').on('click', event => {
+		$('#name-search-results-container').prop('hidden', false);
+		$('#names').prop('hidden', true);
+		$('#recipe-container').prop('hidden', true);
 		$('#ingredient-list').html("");
-		$('.back-button').prop('hidden', true);
-		$('.instructions').html("");
+		$('#back-button').prop('hidden', true);
+		$('#instructions').html("");
 	});
-	$('.category-back-button').on('click', event => {
-		$('.categories-container').prop('hidden', false);
-		$('.category-back-button').prop('hidden', true);
-		$('.name-search-results-container').prop('hidden', true);
-    $('.instructions').html("");
+	$('#category-back-button').on('click', event => {
+		$('#categories-container').prop('hidden', false);
+		$('#category-back-button').prop('hidden', true);
+		$('#name-search-results-container').prop('hidden', true);
+    $('#instructions').html("");
     $('#ingredient-list').html("");
 	});
 }
@@ -161,7 +161,7 @@ function watchNameSearch() {
 		const query = $('#name-search').val();
 		$('#name-search').val("");
 		searchApiByName(query, displayNameSearchResults)
-    $('.names').prop('hidden', true);
+    $('#names').prop('hidden', true);
 	});
 }
 
@@ -170,26 +170,26 @@ let listCount = 0;
 //show name search results
 function displayNameSearchResults(data) {
 	const results = data.drinks.map((item, index) => generateNameResults(item));
-	$('.name-search-results').html(results);
-	$('.name-search-results-container').prop('hidden', false);
-	$('.categories-container').prop('hidden', true);
+	$('#name-search-results').html(results);
+	$('#name-search-results-container').prop('hidden', false);
+	$('#categories-container').prop('hidden', true);
 	showNextSix(listCount);
 	console.log(data.drinks.length);
 	if (data.drinks.length > 7) {
-		$('.load-more-button').prop('hidden', false);
+		$('#load-more-button').prop('hidden', false);
 	}
-	else $('.load-more-button').prop('hidden', true);
+	else $('#load-more-button').prop('hidden', true);
 }
 
 function showNextSix(index) {
 	console.log('showNextSix ran');
-	let elements = $(".name-search-results li");
+	let elements = $("#name-search-results li");
 	elements.hide();
 	let end = index + 6;
 	if (end > elements.length) {
 		end = elements.length;
 		elements.slice(0, end).show()
-		$('.load-more-button').prop('hidden', true);
+		$('#load-more-button').prop('hidden', true);
 	}
 	else if (end < elements.length) {
 		elements.slice(0, end).show();
@@ -203,7 +203,7 @@ function showNextSix(index) {
 
 function watchLoadMore() {
 	console.log('watchLoadMore ran');
-	$('main').on('click', '.load-more-button', event => {
+	$('main').on('click', '#load-more-button', event => {
 		console.log(listCount);
 		listCount += 6;
 		showNextSix(listCount);
@@ -226,10 +226,10 @@ function watchCocktailNameClick() {
 	$('main').on('click', '.name-photo', event => {
 		const recipeTarget = event.target.id;
 		searchApiById(recipeTarget, displayRecipe);
-		$('.names').prop('hidden', true);
-		$('.category-back-button').prop('hidden', true);
-    $('.back-button').prop('hidden', false);
-	});
+		$('#names').prop('hidden', true);
+		$('#category-back-button').prop('hidden', true);
+    $('#back-button').prop('hidden', false);
+	})
 }
 
 //display recipe on page
@@ -237,9 +237,9 @@ function displayRecipe(data) {
 	const results = data.drinks.map((item, index) => generateRecipe(item));
 	data.drinks.map((item, index) => generateIngredientList(item));
 	data.drinks.map((item, index) => generateInstructions(item));
-	$('.recipe').html(results);
-	$('.recipe-container').prop('hidden', false);
-	$('.name-search-results-container').prop('hidden', true);
+	$('#recipe').html(results);
+	$('#recipe-container').prop('hidden', false);
+	$('#name-search-results-container').prop('hidden', true);
 }
 
 //generate recipe HTML
@@ -251,7 +251,7 @@ function generateRecipe(recipe) {
 
 //display recipe instructions
 function generateInstructions(recipe) {
-	$('.instructions').append(`<p>${recipe.strInstructions}</p>`);
+	$('#instructions').append(`<p>${recipe.strInstructions}</p>`);
 }
 
 //generate and display recipe ingredient list

@@ -45,17 +45,17 @@ button {
 	text-transform: uppercase;
 }
 
-.name-button,
-.category-button,
-.ingredient-button,
-.wildcard-button,
-.category-list-button {
+#name-button,
+#category-button,
+#ingredient-button,
+#wildcard-button,
+#category-list-button {
 	width: 100%;
 	//font-size: 16px;
 }
 
 .category-list-button, 
-.wildcard-repeat-button {
+#wildcard-repeat-button {
 	margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -73,7 +73,7 @@ label {
 	width: 150px;
 }
 
-.name-search-results img:hover,
+#name-search-results img:hover,
 h2:hover {
 	cursor: pointer;
 }

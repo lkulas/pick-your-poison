@@ -18,7 +18,7 @@
 		</div>
 	</header>
 	<main role="main">
-		<div class="search-selection">
+		<div id="search-selection">
 			<div class="row">
 				<div class="col-12">
 					<h2>Find cocktail recipes by...</h2>
@@ -26,22 +26,22 @@
 			</div>
 			<div class="row">
 				<div class="col-6">
-					<button type="button" class="name-button">Name</button>
+					<button type="button" id="name-button">Name</button>
 				</div>
 				<div class="col-6">
-					<button type="button" class="category-button">Category</button>
+					<button type="button" id="category-button">Category</button>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-6">
-					<button type="button" class="ingredient-button">Ingredient</button>
+					<button type="button" id="ingredient-button">Ingredient</button>
 				</div>
 				<div class="col-6">
-					<button type="button" class="wildcard-button">Wildcard</button>
+					<button type="button" id="wildcard-button">Wildcard</button>
 				</div>
 			</div>
 		</div>
-		<div class="names" hidden>
+		<div id="names" hidden>
 			<div class="row">
 				<div class="col-12">
 					<form id="name-search-form">
@@ -52,24 +52,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="name-search-results-container" aria-live="assertive" hidden>
+		<div id="name-search-results-container" aria-live="assertive" hidden>
 			<div class="row">
-				<ul class="name-search-results">
+				<ul id="name-search-results">
 				</ul>
 			</div>
 			<div class="row">
 				<div class="col-12">
-					<button type="button" class="load-more-button" hidden">Load More</button>
+					<button type="button" id="load-more-button" hidden">Load More</button>
 				</div>
 			</div>
 		</div>
-		<div class="categories-container" aria-live="assertive" hidden>
+		<div id="categories-container" aria-live="assertive" hidden>
 			<div class="row">
-				<div class="categories">
+				<div id="categories">
 				</div>
 			</div>
 		</div>
-		<div class="ingredients-container" aria-live="assertive" hidden>
+		<div id="ingredients-container" aria-live="assertive" hidden>
       <div class="row">
 				<div class="col-12">
 					<form id="ingredient-search-form">
@@ -80,26 +80,26 @@
 				</div>
 			</div>
 		</div>
-		<div class="recipe-container" aria-live="assertive" hidden>
+		<div id="recipe-container" aria-live="assertive" hidden>
 			<div class="row">
 				<div class="col-12">
-					<div class="recipe">
+					<div id="recipe">
 					</div>
 					<h3>Ingredients</h3>
 					<ul id="ingredient-list">
 					</ul>
-					<div class="instructions">
+					<div id="instructions">
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="start-over" aria-live="polite" hidden>
+		<div id="start-over" aria-live="polite" hidden>
 			<div class="row">
 				<div class="col-12">
-					<button type="button" class="back-button" hidden>Back</button>
-					<button type="button" class="category-back-button" hidden>Back</button>
-          <button type="button" class="wildcard-repeat-button" hidden>Get Another Recipe</button>
-					<button type="button" class="start-over-button">Start Over</button>
+					<button type="button" id="back-button" hidden>Back</button>
+					<button type="button" id="category-back-button" hidden>Back</button>
+          <button type="button" id="wildcard-repeat-button" hidden>Get Another Recipe</button>
+					<button type="button" id="start-over-button">Start Over</button>
 				</div>
 			</div>
 		</div>
