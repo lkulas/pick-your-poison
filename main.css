@@ -14,6 +14,10 @@ h2 {
   text-align: left;
 }
 
+input {
+	margin-bottom: 20px;
+}
+
 #recipe h2 {
   text-align: center;
 }
@@ -84,6 +88,10 @@ button:hover {
   cursor: pointer;
 }
 
+#search-selection button {
+	margin-bottom: 20px;
+}
+
 #name-button,
 #category-button,
 #ingredient-button,
@@ -141,19 +149,17 @@ h3:hover {
 #ingredient-list {
 	margin-left: auto;
 	margin-right: auto;
-	//text-align: left;
 }
 
 li {
   text-transform: capitalize;
 }
 
-.name-photo ul, 
-li {
+ul, li {
 	list-style-type: none;
 }
 
 #ingredient-list li {
 	margin-bottom: 10px;
-	list-style-position: inside;
+	//list-style-position: inside;
 }

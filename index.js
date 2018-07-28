@@ -270,49 +270,49 @@ function generateInstructions(recipe) {
 
 //generate and display recipe ingredient list
 function generateIngredientList(recipe) {
-	if (recipe.strIngredient1 != "") {
+	if (recipe.strIngredient1 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure1} ${recipe.strIngredient1}</li>`);
 	};
-	if (recipe.strIngredient2 != "") {
+	if (recipe.strIngredient2 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure2} ${recipe.strIngredient2}</li>`);
 	};
-	if (recipe.strIngredient3 != "") {
+	if (recipe.strIngredient3 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure3} ${recipe.strIngredient3}</li>`);
 	};
-	if (recipe.strIngredient4 != "") {
+	if (recipe.strIngredient4 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure4} ${recipe.strIngredient4}</li>`);
 	};
-	if (recipe.strIngredient5 != "") {
+	if (recipe.strIngredient5 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure5} ${recipe.strIngredient5}</li>`);
 	};
-	if (recipe.strIngredient6 != "") {
+	if (recipe.strIngredient6 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure6} ${recipe.strIngredient6}</li>`);
 	};
-	if (recipe.strIngredient7 != "") {
+	if (recipe.strIngredient7 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure7} ${recipe.strIngredient7}</li>`);
 	};
-	if (recipe.strIngredient8 != "") {
+	if (recipe.strIngredient8 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure8} ${recipe.strIngredient8}</li>`);
 	};
-	if (recipe.strIngredient9 != "") {
+	if (recipe.strIngredient9 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure9} ${recipe.strIngredient9}</li>`);
 	};
-	if (recipe.strIngredient10 != "") {
+	if (recipe.strIngredient10 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure10} ${recipe.strIngredient10}</li>`);
 	};
-	if (recipe.strIngredient11 != "") {
+	if (recipe.strIngredient11 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure11} ${recipe.strIngredient11}</li>`);
 	};
-	if (recipe.strIngredient12 != "") {
+	if (recipe.strIngredient12 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure12} ${recipe.strIngredient12}</li>`);
 	};
-	if (recipe.strIngredient13 != "") {
+	if (recipe.strIngredient13 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure13} ${recipe.strIngredient13}</li>`);
 	};
-	if (recipe.strIngredient14 != "") {
+	if (recipe.strIngredient14 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure14} ${recipe.strIngredient14}</li>`);
 	};
-	if (recipe.strIngredient15 != "") {
+	if (recipe.strIngredient15 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure15} ${recipe.strIngredient15}</li>`);
 	};
 }
