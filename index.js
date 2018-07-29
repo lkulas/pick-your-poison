@@ -5,7 +5,6 @@ const WILDCARD_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 const ID_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php';
 const CATEGORY_FILTER_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
 
-//AJAX function to search API by name
 function searchApiByName(searchTerm, callback) {
 	const query = {
 		s: `${searchTerm}`,
@@ -13,7 +12,6 @@ function searchApiByName(searchTerm, callback) {
 	$.getJSON(NAME_SEARCH_URL, query, callback);
 }
 
-//AJAX function to search API by ingredient
 function searchApiByIngredient(searchTerm, callback) {
 	const query = {
 		i: `${searchTerm}`,
@@ -23,12 +21,10 @@ function searchApiByIngredient(searchTerm, callback) {
 	});
 }
 
-//AJAX function to get random recipe from API
 function searchApiByWildcard(callback) {
 	$.getJSON(WILDCARD_URL, callback);
 }
 
-//AJAX function to search API by cocktail ID
 function searchApiById(searchTerm, callback) {
 	const query = {
 		i: `${searchTerm}`,
@@ -36,7 +32,6 @@ function searchApiById(searchTerm, callback) {
 	$.getJSON(ID_SEARCH_URL, query, callback);
 }
 
-//AJAX function to list API categories
 function searchApiByCategory(callback) {
 	const query = {
 		c: 'list',
@@ -44,7 +39,6 @@ function searchApiByCategory(callback) {
 	$.getJSON(CATEGORY_LIST_URL, query, callback);
 }
 
-//AJAX function to find drinks by category
 function filterApiByCategory(searchTerm, callback) {
 	const query = {
 		c: `${searchTerm}`,
@@ -52,7 +46,6 @@ function filterApiByCategory(searchTerm, callback) {
 	$.getJSON(CATEGORY_FILTER_URL, query, callback);
 }
 
-//watch for click on 'search by ingredient' button
 function watchClickIngredient() {
 	$('#ingredient-button').on('click', event => {
 		$('#ingredients-container').prop('hidden', false);
@@ -61,7 +54,6 @@ function watchClickIngredient() {
 	});
 }
 
-//watch for ingredient search submit
 function watchIngredientSearch() {
 	$('#ingredient-search-form').submit(event => {
 		event.preventDefault();
@@ -72,7 +64,6 @@ function watchIngredientSearch() {
 	});
 }
 
-//watch for click on 'wildcard' button
 function watchClickWildcard() {
   $('#wildcard-button').on('click', event => {
     $('#search-selection').prop('hidden', true);
@@ -83,7 +74,6 @@ function watchClickWildcard() {
   });
 }
 
-//watch for click on 'get another recipe' button
 function watchClickRepeatWildcard() {
   $('#wildcard-repeat-button').on('click', event => {
     $('#ingredient-list').html("");
@@ -92,7 +82,6 @@ function watchClickRepeatWildcard() {
   });
 }
 
-//watch for click on 'search by name' button
 function watchClickName() {
 	$('#name-button').on('click', event => {
 		$('#names').prop('hidden', false);
@@ -101,7 +90,6 @@ function watchClickName() {
 	});
 }
 
-//watch for click on 'categories' button
 function watchClickCategories() {
 	$('#category-button').on('click', event => {
 		$('#categories-container').prop('hidden', false);
@@ -111,17 +99,14 @@ function watchClickCategories() {
 	});
 }
 
-//generate categories
 function displayCategoryResults(data) {
 	data.drinks.map((item, index) => generateCategoryResults(item));
 }
 
-//generate HTML for name search results
 function generateCategoryResults(result) {
 	$('#categories').append(`<div class="col-6"><button type="button" class="category-list-button" id="${result.strCategory}">${result.strCategory}</button></div>`);
 }
 
-//watch for user click on category result button
 function watchClickCategoryResult() {
 	$('#categories').on('click', 'button', event => {
 		const query = event.target.id;
@@ -130,14 +115,12 @@ function watchClickCategoryResult() {
 	});
 }
 
-//watch for user click on start over button
 function watchStartOver() {
 	$('#start-over-button').on('click', event => {
 		window.location.reload(true);
 	});
 }
 
-//watch for user click on go back button
 function watchGoBack() {
 	$('#back-button').on('click', event => {
 		$('#name-search-results-container').prop('hidden', false);
@@ -156,7 +139,6 @@ function watchGoBack() {
 	});
 }
 
-//watch for name search submit
 function watchNameSearch() {
 	$('#name-search-form').submit(event => {
 		event.preventDefault();
@@ -173,7 +155,6 @@ function searchError() {
 	$('#name-search-results-container').prop('hidden', false);
 }
 
-//show name search results
 function displayNameSearchResults(data) {
 	if (data.drinks === null) {
 		searchError();
@@ -217,18 +198,16 @@ function watchLoadMore() {
 	});
 }
 
-//generate HTML for name search results
 function generateNameResults(result) {
 	return `
 			<li class="name-photo">
 				<div class="col-6">
 					<img src="${result.strDrinkThumb}" id="${result.idDrink}" class="thumbnail" alt="Photo of ${result.strDrinkThumb}">
-					<h3>${result.strDrink}</h3>
+					<h2>${result.strDrink}</h2>
 				</div>
 			</li>`;
 }
 
-//listen for click on recipe name
 function watchCocktailNameClick() {
 	$('main').on('click', '.name-photo', event => {
 		const recipeTarget = event.target.id;
@@ -239,7 +218,6 @@ function watchCocktailNameClick() {
 	})
 }
 
-//display recipe on page
 function displayRecipe(data) {
 	const results = data.drinks.map((item, index) => generateRecipe(item));
 	data.drinks.map((item, index) => generateIngredientList(item));
@@ -249,19 +227,16 @@ function displayRecipe(data) {
 	$('#name-search-results-container').prop('hidden', true);
 }
 
-//generate recipe HTML
 function generateRecipe(recipe) {
 	return `
 	<h2>${recipe.strDrink}</h2>
 	<img src="${recipe.strDrinkThumb}" class="feature-image" alt="Photo of ${recipe.strDrink}">`;
 }
 
-//display recipe instructions
 function generateInstructions(recipe) {
 	$('#instructions').append(`<p>${recipe.strInstructions}</p>`);
 }
 
-//generate and display recipe ingredient list
 function generateIngredientList(recipe) {
 	if (recipe.strIngredient1 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure1} ${recipe.strIngredient1}</li>`);

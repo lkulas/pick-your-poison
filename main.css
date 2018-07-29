@@ -33,6 +33,7 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .row {
@@ -75,16 +76,16 @@ body {
 button {
 	padding: 20px;
 	text-transform: uppercase;
-  background-color: #db8a23;
-  border: 3px solid #db8a23;
+  background-color: #A66816;
+  border: 3px solid #A66816;
   color: white;
   letter-spacing: 4px;
   font-family: 'Raleway', sans-serif;
 }
 
 button:hover {
-  background-color: #869078;
-  border: 3px solid #db8a23;
+  background-color: #707863;
+  border: 3px solid #A66816;
   cursor: pointer;
 }
 
@@ -121,7 +122,7 @@ label {
 }
 
 #name-search-results img:hover,
-h3:hover {
+h2:hover {
 	cursor: pointer;
 }
 
@@ -133,12 +134,12 @@ h3:hover {
   border: 2px solid white;
 }
 
-.name-photo h3 {
+.name-photo h2 {
   padding-bottom: 20px;
 }
 
 .name-photo img:hover {
-  border: 2px solid #db8a23;
+  border: 2px solid #A66816;
 }
 
 .feature-image {
