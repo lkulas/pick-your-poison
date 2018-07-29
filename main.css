@@ -136,6 +136,8 @@ h2:hover {
 
 .name-photo h2 {
   padding-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .name-photo img:hover {
