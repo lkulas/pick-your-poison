@@ -17,8 +17,9 @@ Recipe:
 ![recipe](screenshots/recipe.png)
 
 ## Built With
+* HTML/CSS
 * JavaScript
-* JQuery
+* jQuery
 
 ## API
 [The Cocktail DB](https://www.thecocktaildb.com/api.php)
