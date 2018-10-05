@@ -17,8 +17,6 @@ Recipe:
 ![recipe](screenshots/recipe.png)
 
 ## Built With
-* HTML
-* CSS
 * JavaScript
 * JQuery
 
