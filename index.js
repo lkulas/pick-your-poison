@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/*globals $:false */
+
 const NAME_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php';
 const CATEGORY_LIST_URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php';
 const INGREDIENT_SEARCH_URL = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php';
@@ -59,7 +62,7 @@ function watchIngredientSearch() {
 		event.preventDefault();
 		const query = $('#ingredient-search').val();
 		$('#ingredient-search').val("");
-		searchApiByIngredient(query, displayNameSearchResults)
+		searchApiByIngredient(query, displayNameSearchResults);
     $('#ingredients-container').prop('hidden', true);
 	});
 }
@@ -95,7 +98,7 @@ function watchClickCategories() {
 		$('#categories-container').prop('hidden', false);
 		$('#search-selection').prop('hidden', true);
 		$('#start-over').prop('hidden', false);
-		searchApiByCategory(displayCategoryResults)
+		searchApiByCategory(displayCategoryResults);
 	});
 }
 
@@ -144,7 +147,7 @@ function watchNameSearch() {
 		event.preventDefault();
 		const query = $('#name-search').val();
 		$('#name-search').val("");
-		searchApiByName(query, displayNameSearchResults)
+		searchApiByName(query, displayNameSearchResults);
     $('#names').prop('hidden', true);
 	});
 }
@@ -167,7 +170,7 @@ function displayNameSearchResults(data) {
 	if (data.drinks.length > 7) {
 		$('#load-more-button').prop('hidden', false);
 	}
-	else $('#load-more-button').prop('hidden', true);};
+	else $('#load-more-button').prop('hidden', true);}
 }
 
 function showNextSix(index) {
@@ -176,7 +179,7 @@ function showNextSix(index) {
 	let end = index + 6;
 	if (end > elements.length) {
 		end = elements.length;
-		elements.slice(0, end).show()
+		elements.slice(0, end).show();
 		$('#load-more-button').prop('hidden', true);
 	}
 	else if (end < elements.length) {
@@ -186,7 +189,7 @@ function showNextSix(index) {
 	else {
 		index = 0;
 		elements.slice(0, 6).show();
-	};
+	}
 }
 
 let listCount = 0;
@@ -203,7 +206,7 @@ function generateNameResults(result) {
 			<li class="name-photo">
 				<div class="col-6">
 					<img src="${result.strDrinkThumb}" id="${result.idDrink}" class="thumbnail" alt="Photo of ${result.strDrinkThumb}">
-					<h2>${result.strDrink}</h2>
+					<h2 class="thumbnail-name">${result.strDrink}</h2>
 				</div>
 			</li>`;
 }
@@ -215,7 +218,7 @@ function watchCocktailNameClick() {
 		$('#names').prop('hidden', true);
 		$('#category-back-button').prop('hidden', true);
     $('#back-button').prop('hidden', false);
-	})
+	});
 }
 
 function displayRecipe(data) {
@@ -229,7 +232,7 @@ function displayRecipe(data) {
 
 function generateRecipe(recipe) {
 	return `
-	<h2>${recipe.strDrink}</h2>
+	<h2 class="center">${recipe.strDrink}</h2>
 	<img src="${recipe.strDrinkThumb}" class="feature-image" alt="Photo of ${recipe.strDrink}">`;
 }
 
@@ -240,60 +243,64 @@ function generateInstructions(recipe) {
 function generateIngredientList(recipe) {
 	if (recipe.strIngredient1 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure1} ${recipe.strIngredient1}</li>`);
-	};
+	}
 	if (recipe.strIngredient2 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure2} ${recipe.strIngredient2}</li>`);
-	};
+	}
 	if (recipe.strIngredient3 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure3} ${recipe.strIngredient3}</li>`);
-	};
+	}
 	if (recipe.strIngredient4 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure4} ${recipe.strIngredient4}</li>`);
-	};
+	}
 	if (recipe.strIngredient5 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure5} ${recipe.strIngredient5}</li>`);
-	};
+	}
 	if (recipe.strIngredient6 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure6} ${recipe.strIngredient6}</li>`);
-	};
+	}
 	if (recipe.strIngredient7 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure7} ${recipe.strIngredient7}</li>`);
-	};
+	}
 	if (recipe.strIngredient8 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure8} ${recipe.strIngredient8}</li>`);
-	};
+	}
 	if (recipe.strIngredient9 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure9} ${recipe.strIngredient9}</li>`);
-	};
+	}
 	if (recipe.strIngredient10 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure10} ${recipe.strIngredient10}</li>`);
-	};
+	}
 	if (recipe.strIngredient11 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure11} ${recipe.strIngredient11}</li>`);
-	};
+	}
 	if (recipe.strIngredient12 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure12} ${recipe.strIngredient12}</li>`);
-	};
+	}
 	if (recipe.strIngredient13 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure13} ${recipe.strIngredient13}</li>`);
-	};
+	}
 	if (recipe.strIngredient14 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure14} ${recipe.strIngredient14}</li>`);
-	};
+	}
 	if (recipe.strIngredient15 != ("" || null)) {
 		$('#ingredient-list').append(`<li>${recipe.strMeasure15} ${recipe.strIngredient15}</li>`);
-	};
+	}
 }
 
-watchClickName();
-watchNameSearch();
-watchCocktailNameClick();
-watchStartOver();
-watchGoBack();
-watchClickCategories();
-watchClickCategoryResult();
-watchClickWildcard();
-watchClickRepeatWildcard();
-watchClickIngredient();
-watchIngredientSearch();
-watchLoadMore();
+function handlePage() {
+	watchClickName();
+	watchNameSearch();
+	watchCocktailNameClick();
+	watchStartOver();
+	watchGoBack();
+	watchClickCategories();
+	watchClickCategoryResult();
+	watchClickWildcard();
+	watchClickRepeatWildcard();
+	watchClickIngredient();
+	watchIngredientSearch();
+	watchLoadMore();
+}
+
+$(handlePage());

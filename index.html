@@ -7,9 +7,7 @@
 	<meta name="viewport" content="width=device-width" initial-scale="1">
   <link href="https://necolas.github.io/normalize.css/8.0.0/normalize.css" rel="stylesheet" type="text/css">
 	<link href="main.css" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Pacifico|Raleway" rel="stylesheet">
 </head>
 <body>
 	<header role="banner">
@@ -28,16 +26,16 @@
 			</div>
 			<div class="row">
 				<div class="col-6">
-					<button type="button" id="name-button">Name</button>
+					<button type="button" id="name-button" class="search-btn">Name</button>
 				</div>
 				<div class="col-6">
-					<button type="button" id="category-button">Category</button>
+					<button type="button" id="category-button" class="search-btn">Category</button>
 				</div>
 				<div class="col-6">
-					<button type="button" id="ingredient-button">Ingredient</button>
+					<button type="button" id="ingredient-button" class="search-btn">Ingredient</button>
 				</div>
 				<div class="col-6">
-					<button type="button" id="wildcard-button">Wildcard</button>
+					<button type="button" id="wildcard-button" class="search-btn">Wildcard</button>
 				</div>
 			</div>
 		</div>
@@ -46,7 +44,7 @@
 				<div class="col-12">
 					<form id="name-search-form" aria-live="assertive">
 						<label for="name-search" id="aria-name-label">Search by name</label>
-						<input type="text" id="name-search" placeholder="margarita" aria-labelledby="aria-name-label" required>
+						<input type="text" id="name-search" class="search-input" placeholder="margarita" aria-labelledby="aria-name-label" required>
 						<button type="submit">Search</button>
 					</form>
 				</div>
@@ -74,7 +72,7 @@
 				<div class="col-12">
 					<form id="ingredient-search-form">
 						<label for="ingredient-search" id="aria-ingredient-label">Search by ingredient</label>
-						<input type="text" id="ingredient-search" placeholder="vodka" aria-labelledby="aria-ingredient-label" required>
+						<input type="text" id="ingredient-search" placeholder="vodka" class="search-input" aria-labelledby="aria-ingredient-label" required>
 						<button type="submit">Search</button>
 					</form>
 				</div>
@@ -85,7 +83,7 @@
 				<div class="col-12">
 					<div id="recipe">
 					</div>
-					<ul id="ingredient-list">
+					<ul id="ingredient-list" class="ingredient-list">
 					</ul>
 					<div id="instructions">
 					</div>
@@ -97,12 +95,13 @@
 				<div class="col-12">
 					<button type="button" id="back-button" hidden>Back</button>
 					<button type="button" id="category-back-button" hidden>Back</button>
-          <button type="button" id="wildcard-repeat-button" hidden>Get Another Recipe</button>
+          <button type="button" id="wildcard-repeat-button" class="wildcard-repeat-button" hidden>Get Another Recipe</button>
 					<button type="button" id="start-over-button">Start Over</button>
 				</div>
 			</div>
 		</div>
 	</main>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="index.js"></script>
 </body>
 </html>
